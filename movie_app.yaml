@@ -1,0 +1,77 @@
+# [START kubernetes_deployment]
+apiVersion: extensions/v1beta1
+kind: Deployment
+  name: movie-app
+  labels:
+    app: movie-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: movie-app
+    spec:
+      containers:
+      - name: movie-app-backend
+        image: gcr.io/kp-test-project-2/movie_app_backend
+        imagePullPolicy: Always
+        env:
+        # [ START cloudsql_secrets ]
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql
+              key: username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql
+              key: password
+        # [ END cloudsql_secrets ]
+        ports:
+          - containerPort: 8080
+      # [START proxy_container]
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        name: cloudsql-proxy
+        command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                  "-instances=kp-test-project-2:europe-west3-a:django-db=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-oauth-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+          - name: ssl-certs
+            mountPath: /etc/ssl/certs
+          - name: cloudsql
+            mountPath: /cloudsql
+      # [END proxy_container]
+      # [START volumes]
+      volumes:
+        - name: cloudsql-oauth-credentials
+          secret:
+            secretName: cloudsql-oauth-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
+        - name: cloudsql
+          emptyDir:
+      # [END volumes]
+# [END kubernetes_deployment]
+
+---
+
+# [START service]
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-app
+  labels:
+    app: movie-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: movie-app
+# [END service]
