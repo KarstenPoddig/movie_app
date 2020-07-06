@@ -1,0 +1,18 @@
+
+# backend django
+movie_app_backend/.idea
+movie_app_backend/movie_app/migrations
+movie_app_backend/movie_app/saved_files
+movie_app_backend/venv
+movie_app_backend/movie_app_backend/settings.py
+
+# frontend angular
+movie-app-frontend/.idea
+movie-app-frontend/dist
+movie-app-frontend/e2e
+movie-app-frontend/node_modules
+
+# Project Files
+.idea
+
+credentials.json

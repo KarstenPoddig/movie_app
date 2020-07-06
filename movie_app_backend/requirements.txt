@@ -1,0 +1,15 @@
+Django
+numpy
+pandas
+requests
+scipy
+sklearn
+wheel
+gunicorn
+psycopg2
+django-test-without-migrations
+
+# test for authentification from angular
+djangorestframework
+djangorestframework-jwt
+djangorestframework_simplejwt

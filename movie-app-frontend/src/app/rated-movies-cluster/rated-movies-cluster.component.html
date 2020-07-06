@@ -1,0 +1,38 @@
+<h2>Your Clustered Movies</h2>
+
+<div *ngIf="!authService.isLoggedIn()">
+  Please sign to view the clusters of your rated movies.
+</div>
+
+<div [hidden]="!authService.isLoggedIn()">
+  <button class="button" (click)="refreshCluster();">Refresh Your Cluster</button>
+
+  <div *ngFor="let cluster of clusterList" class="row">
+
+    <div class="cluster_tag_wrapper" align="center">
+      <div *ngFor="let tag of cluster.tags" class="cluster_tag_elem">
+        {{ tag }}
+      </div>
+    </div>
+
+    <div class="scrollmenu">
+      <div *ngFor="let movie of cluster.getMovies()" style="display: inline-block;">
+        <div class='suggested_movie_complete'>
+        <img src="{{ movie.urlMoviePoster }}" class='img_suggestion'>
+        <div class='movie_view_short_info' hidden="true">
+          <div class ='row' style='background-color: #dee9fa;'>
+            <div class='movie_title_wrapper' style='padding: 5px 5px; font-weight: bold; font-size: 20px;'>
+              {{ movie.title }}
+              </div>
+            </div>
+          <div style='padding: 5px 5px;'>
+            <p> {{ movie.country }} , {{ movie.year }} </p>
+            <p>{{ movie.runtime }} min </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

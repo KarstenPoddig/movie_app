@@ -1,0 +1,82 @@
+<div class="sidenav" id="mySidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0px'; document.getElementById('content').style.marginLeft = '0px';">×</a>
+  <a routerLink="/about">About</a>
+  <a routerLink="/test">Test</a>
+  <a routerLink="/all-movies" routerLinkActive="active">All Movies</a>
+  <a routerLink="/rated-movies" routerLinkActive="active">Rated Movies</a>
+  <ul style="list-style-type:none; padding-left: 20px;">
+    <li><a routerLink="/rated-movies-cluster" routerLinkActive="active">Clusters of Rated Movies</a></li>
+    <li><a routerLink="/rated-movies-statistics" routerLinkActive="active">Stastistics</a></li>
+  </ul>
+  <a>Suggestions</a>
+  <ul style="list-style-type:none; padding-left: 20px;">
+    <li><a routerLink="/suggestions-cluster" routerLinkActive="active">Clusters</a></li>
+    <li><a routerLink="/suggestions-similar-movies" routerLinkActive="active">Similar Movies</a></li>
+    <li><a routerLink="/suggestions-actors" routerLinkActive="active">Actors</a></li>
+  </ul>
+  <hr>
+  <a>Analysis</a>
+</div>
+
+<div class="content" id="content">
+  <div class="top">
+    <div class="row">
+      <div class="col-sm-1" align="left">
+        <div class="sidenav_button_container" onclick="document.getElementById('mySidenav').style.width = '200px'; document.getElementById('content').style.marginLeft = '200px';">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
+      <div class="col-sm-8" align="center">
+        <h2 style='color: white;'>Movie App</h2>
+      </div>
+
+      <!-- Authentification Area -->
+      <div class="col-sm-3" align="right" style="font-size: 20px;">
+
+        <div id="authentication_area" style="border:1px solid white;">
+          <div *ngIf="!isLoggedIn();" align="right">
+            <div class="row">
+              <div class="col-sm-5" style="padding: 5px 5px;">
+                <input placeholder="username" id="input_username" style="height: 30px; width: 100%; font-size: 15px;">
+                <input type="password" placeholder="password" id="input_password" style="height: 30px; width: 100%; font-size: 15px;" (keyup.enter)="login();">
+              </div>
+              <div class="col-sm-3" style="padding: 5px 5px; width: 100%;">
+                <button class="button" (click)="login();">Sign In</button>
+              </div>
+              <div class="col-sm-4" style="padding: 5px 5px;">
+                <button class="button">Sign Up</button>
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="isLoggedIn();">
+            <div class="row">
+              <div class="col-sm-5">
+                <div>
+                  {{ getUsername() }}
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <button class="button" (click)="logout();">Sign Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="main" id="content-area">
+    <div *ngIf="authService.isLoggedIn()">
+      <app-quality-of-profile></app-quality-of-profile>
+    </div>
+    <!-- Here comes the actual page -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

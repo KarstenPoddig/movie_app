@@ -1,0 +1,72 @@
+
+<h3>Similar Movies</h3>
+
+<div class="ui-widget">
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let title of this.titles" [value]="title">
+      {{ title }}
+    </mat-option>
+  </mat-autocomplete>
+  <input placeholder="Movie title"
+         (keyup.enter)="getBaseMovie();"
+         id="movie_title"
+         #movieSearchInput
+         style="width: 75%"
+         [matAutocomplete]="auto">
+
+  <button id="search_button" class="button" type="submit" style="width: 20%" (click)="getBaseMovie();">Search!</button>
+</div>
+
+<div *ngIf="baseMovieIsAssigned">
+  <div id="base_movie">
+    <div class='movie_view_detailed_complete'>
+      <img src="{{ baseMovie.urlMoviePoster }}" class='img_movie_view_detailed'>
+      <div class='movie_view_detailed_info' id=" {{ baseMovie.movieId }} ">
+        <div class ="row" style="background-color: #dee9fa;">
+          <div class="movie_title_wrapper" style="margin: 0 5px; font-weight: bold; font-size: 20px;">
+            {{ baseMovie.title }}
+          </div>
+        </div>
+        <div class="row" style="padding: 4px 4px;">
+          <div class="col-sm-8" style="align-items: center;">
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;">
+              {{ baseMovie.year }}, {{ baseMovie.country }}, {{ baseMovie.production }}
+            </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Actors: </b> {{ baseMovie.actors }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Director: </b> {{ baseMovie.directors }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Writer: </b> {{ baseMovie.writers }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Genre: </b> {{ baseMovie.genres }} </p>
+          </div>
+          <div class='col-sm-4'>
+            <p>Your Rating: {{ baseMovie.rating }}</p>
+            <p>Imdb-Rating: {{ baseMovie.imdbRating }} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="similarity_results">
+  <div class="scrollmenu">
+    <div *ngFor="let movie of movieList.getMovies()" style="display: inline-block;">
+      <div class='suggested_movie_complete'>
+        <img src="{{ movie.urlMoviePoster }}" class='img_suggestion'>
+        <div class='movie_view_short_info' hidden="true">
+          <div class ='row' style='background-color: #dee9fa;'>
+            <div class='movie_title_wrapper' style='padding: 5px 5px; font-weight: bold; font-size: 20px;'>
+              {{ movie.title }}
+            </div>
+          </div>
+          <div style='padding: 5px 5px;'>
+            <p> {{ movie.country }} , {{ movie.year }} </p>
+            <p>{{ movie.runtime }} min </p>
+            <p>Similarity: {{ movie.similarity_score }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

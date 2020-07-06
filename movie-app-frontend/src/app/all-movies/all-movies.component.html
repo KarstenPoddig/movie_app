@@ -1,0 +1,110 @@
+
+
+<h2>All Movies</h2>
+<div class="ui-widget">
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let title of this.titles" [value]="title">
+      {{ title }}
+    </mat-option>
+  </mat-autocomplete>
+  <input placeholder="Movie title"
+         (keyup.enter)="getMovies(1);"
+         id="movie_title"
+         #movieSearchInput
+         style="width: 75%"
+         [matAutocomplete]="auto">
+
+  <button id="search_button" class="button" type="submit" style="width: 20%" (click)="getMovies(1);">Search!</button>
+</div>
+<!-- Filter Area -->
+<div class="filter_area">
+  <h4>Filter</h4>
+  <div class="row">
+    <!--        Filter Criteria: align left-->
+    <div class="col-sm-4" align="left">
+      <div class="dropdown">
+        <button class="dropbtn">Genre</button>
+        <div class="dropdown-content" id="filter_genre">
+          <a *ngFor="let genre of ['Adventure', 'Animation', 'Children', 'Comedy', 'Fantasy', 'Romance', 'Drama', 'Action', 'Crime', 'Thriller',
+                                   'Horror', 'Mystery', 'Sci-Fi', 'IMAX', 'Documentary', 'War', 'Musical', 'Western', 'Film-Noir']"
+             (click)="this.filter.add_genre_filter(genre);">{{ genre }}</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Year</button>
+        <div class="dropdown-content" id="filter_year">
+          <a *ngFor="let year of ['1950s and earlier', '1960s', '1970s', '1980s', '1990s', '2000s', '2010s']"
+             (click)="this.filter.add_year_filter(year);">
+            {{ year }}
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div id="active_genre_filter"></div>
+    </div>
+    <div class="col-sm-2">
+      <div id="active_year_filter"></div>
+    </div>
+    <!--        Reset Filter Criteria: align right    -->
+    <div class="col-sm-4" align="right">
+      <button class="button" id="filter_clear" (click)="this.filter.clear_filter();">Clear All Filter!</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="result_nav_area_top" align="center">
+  <button class="button" *ngFor="let page of navigationArea.getPagesShown();" (click)="getMovies(page);">
+    {{ page }}
+  </button>
+</div>
+
+<div id="movie_list">
+  <div *ngFor="let movie of movieQueryResult.getQueryResult()">
+    <div class='movie_view_detailed_complete'>
+      <img src="{{ movie.urlMoviePoster }}" class='img_movie_view_detailed'>
+      <div class='movie_view_detailed_info' id=" {{ movie.movieId }} ">
+        <div class ="row" style="background-color: #dee9fa;">
+          <div class="movie_title_wrapper" style="margin: 0 5px; font-weight: bold; font-size: 20px;">
+            {{ movie.title }}
+          </div>
+        </div>
+        <div class="row" style="padding: 4px 4px;">
+          <div class="col-sm-8" style="align-items: center;">
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;">
+              {{ movie.year }}, {{ movie.country }}, {{ movie.production }}
+            </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Actors: </b> {{ movie.actors }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Director: </b> {{ movie.directors }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Writer: </b> {{ movie.writers }} </p>
+            <p style="height: 36px; margin-top: 0px; margin-bottom: 0px;"> <b>Genre: </b> {{ movie.genres }} </p>
+          </div>
+          <div class='col-sm-4'>
+            <p>Your Rating: {{ movie.rating }}</p>
+            <p>Imdb-Rating: {{ movie.imdbRating }} </p>
+<!--            <ngb-rating [(rate)]="1" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>-->
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!movieQueryResult.statusIsNormal()">
+    {{ movieQueryResult.getException() }}
+  </div>
+</div>
+
+
+
+<div class="container_loader" id="movie_loader" hidden="true">
+  <div class="loader"></div>
+  <p>Searching ...</p>
+</div>
+
+
+<div id="result_nav_area_bottom" align="center">
+  <button class="button" *ngFor="let page of navigationArea.getPagesShown();" (click)="getMovies(page);">
+    {{ page }}
+  </button>
+</div>

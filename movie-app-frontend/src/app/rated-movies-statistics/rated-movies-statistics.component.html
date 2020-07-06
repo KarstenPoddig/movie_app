@@ -1,0 +1,69 @@
+<h3>Statistical Dashboard of Your Ratings</h3>
+
+<div *ngIf="!authService.isLoggedIn()">
+  Please sign in to view the statistics of your ratings.
+</div>
+
+<div [hidden]="!authService.isLoggedIn()">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <button class="button" (click)="showHistRating();">Fetch Hist Rating Data</button>
+
+      <div style="display:block">
+        <canvas baseChart
+                [chartType] = "histRating.chartType"
+                [datasets] = "histRating.chartDatasets"
+                [labels] = "histRating.chartLabels"
+                [colors] = "histRating.chartColors">
+        </canvas>
+      </div>
+
+    </div>
+    <div class="col-sm-6">
+
+      <button class="button" (click)="showHistRatingYear();">Fetch Hist Rating Data</button>
+
+      <div style="display:block">
+        <canvas baseChart
+                [chartType] = "histRatingYear.chartType"
+                [datasets] = "histRatingYear.chartDatasets"
+                [labels] = "histRatingYear.chartLabels"
+                [colors] = "histRatingYear.chartColors">
+        </canvas>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+
+      <button class="button" (click)="showHistRatingGenre();">Fetch Hist Rating Data</button>
+
+      <div style="display:block;">
+        <canvas baseChart
+                [chartType] = "histRatingGenre.chartType"
+                [datasets] = "histRatingGenre.chartDatasets"
+                [labels] = "histRatingGenre.chartLabels"
+                [colors] = "histRatingGenre.chartColors">
+        </canvas>
+      </div>
+
+    </div>
+    <div class="col-sm-6">
+
+      <button class="button" (click)="showAvgRatingGenre();">Fetch Hist Rating Data</button>
+
+      <div style="display:block">
+        <canvas baseChart
+                [chartType] = "avgRatingGenre.chartType"
+                [datasets] = "avgRatingGenre.chartDatasets"
+                [labels] = "avgRatingGenre.chartLabels"
+                [colors] = "avgRatingGenre.chartColors">
+        </canvas>
+      </div>
+
+    </div>
+  </div>
+</div>

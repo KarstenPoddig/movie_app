@@ -1,0 +1,37 @@
+{
+  "/all_movies_detail_data/*": {
+    "target": "http://127.0.0.1:8000/movie_app/all_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api-token-auth/*": {
+    "target": "http://127.0.0.1:8000/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/rated_movies_detail_data/*": {
+    "target": "http://127.0.0.1:8000/movie_app/rated_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/hist_rating_data/*": {
+    "target": "http://127.0.0.1:8000/movie_app/rated_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/hist_rating_year_data/*": {
+    "target": "http://127.0.0.1:8000/movie_app/rated_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/test_drf/*": {
+    "target": "http://127.0.0.1:8000/movie_app/rated_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/test_2/*": {
+    "target": "http://127.0.0.1:8000/movie_app/rated_movies/",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
