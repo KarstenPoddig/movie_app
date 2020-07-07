@@ -1,6 +1,7 @@
 # [START kubernetes_deployment]
 apiVersion: extensions/v1beta1
 kind: Deployment
+metadata:
   name: movie-app
   labels:
     app: movie-app
