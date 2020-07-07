@@ -7,4 +7,4 @@ ADD requirements.txt /app/requirements.txt
 RUN /venv/bin/pip install --upgrade pip && /venv/bin/pip install -r /app/requirements.txt
 ADD . /app
 
-CMD CMD gunicorn -b :$PORT movie_app_backend.wsgi
+CMD gunicorn -b :$PORT movie_app_backend.wsgi
