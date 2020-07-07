@@ -1,15 +1,21 @@
+
 Django
-numpy
-pandas
-requests
-scipy
-scikit-learn
-wheel
-gunicorn
-psycopg2
 django-test-without-migrations
 
 # test for authentification from angular
 djangorestframework
 djangorestframework-jwt
 djangorestframework_simplejwt
+
+wheel
+gunicorn
+requests
+psycopg2
+
+numpy
+pandas
+scikit-learn
+scipy
+
+
+
