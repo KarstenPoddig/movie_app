@@ -3,7 +3,7 @@ numpy
 pandas
 requests
 scipy
-sklearn
+scikit-learn
 wheel
 gunicorn
 psycopg2
