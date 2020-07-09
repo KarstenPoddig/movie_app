@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-app-frontend-deployment
+  labels:
+    app: movie-app-frontend-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: movie-app-frontend-pod
+
+  template:
+    metadata:
+      name: movie-app-frontend-pod
+      labels:
+        app: movie-app-frontend-pod
+
+    spec:
+      containers:
+        - name: movie-app-frontend
+          image: gcr.io/kp-test-project-2/movie_app_frontend
+          imagePullPolicy: Always
+          ports:
+            -containerPort: 80

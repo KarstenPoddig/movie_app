@@ -2,9 +2,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: movie-app
+  name: movie-app-backend
   labels:
-    app: movie-app
+    app: movie-app-backend
 spec:
   replicas: 1
   template:
@@ -65,14 +65,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: movie-app
+  name: movie-app-backend
   labels:
-    app: movie-app
+    app: movie-app-backend
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8080
   selector:
-    app: movie-app
+    app: movie-app-backend
 # [END service]
