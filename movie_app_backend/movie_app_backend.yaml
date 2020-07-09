@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: movie-app
+        app: movie-app-backend
     spec:
       containers:
       - name: movie-app-backend
