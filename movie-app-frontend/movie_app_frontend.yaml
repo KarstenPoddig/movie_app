@@ -1,21 +1,22 @@
+# deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: movie-app-frontend-deployment
+  name: movie-app-frontend
   labels:
-    app: movie-app-frontend-deployment
+    app: movie-app-frontend
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: movie-app-frontend-pod
+      app: movie-app-frontend
 
   template:
     metadata:
-      name: movie-app-frontend-pod
+      name: movie-app-frontend
       labels:
-        app: movie-app-frontend-pod
+        app: movie-app-frontend
 
     spec:
       containers:
@@ -24,3 +25,11 @@ spec:
           imagePullPolicy: Always
           ports:
             -containerPort: 80
+
+
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label-key

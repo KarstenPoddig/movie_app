@@ -1,18 +1,15 @@
 
-############### First try #######################################
-# FROM nginx:1.17.1-alpine
-# COPY nginx.conf /etc/nginx/nginx.conf
-# COPY /dist/movie-app-frontend /usr/share/nginx/html
-
-############### Second try #####################################
-
-FROM node:alpine as builder
+# Stage 0, "build-stage", based on node.js, to build and compile the frontend
+FROM node:alpine as build-stage
 WORKDIR /app
-COPY ./package.json ./
+COPY package*.json /app/
 RUN npm install
-COPY . .
-RUN npm run build
+COPY ./ /app/
+ARG configuration=production
+RUN npm run build -- --output-path=./dist/out --configuration $configuration
+
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with nginx
 FROM nginx
-EXPOSE 4200
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
