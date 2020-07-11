@@ -1,9 +1,10 @@
 
 # Stage 0, "build-stage", based on node.js, to build and compile the frontend
-FROM node:alpine as build-stage
-WORKDIR /app
-COPY package*.json /app/
-RUN npm install
+# FROM node:alpine as build-stage
+# WORKDIR /app
+# COPY package*.json /app/
+# RUN npm install
+FROM karstenp/movie_app_frontend_base as build-stage
 COPY ./ /app/
 ARG configuration=production
 RUN npm run build -- --output-path=./dist/out --configuration $configuration
