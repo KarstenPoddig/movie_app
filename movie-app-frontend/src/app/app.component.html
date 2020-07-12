@@ -20,53 +20,56 @@
 
 <div class="content" id="content">
   <div class="top">
-    <div class="row">
-      <div class="col-sm-1" align="left">
-        <div class="sidenav_button_container" onclick="document.getElementById('mySidenav').style.width = '200px'; document.getElementById('content').style.marginLeft = '200px';">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
+    <div class="row" style="display: inline-block;">
+
+      <!-- Button for showing sidebar -->
+      <div class="sidenav_button_container"
+           style="float: left;"
+           onclick="document.getElementById('mySidenav').style.width = '200px'; document.getElementById('content').style.marginLeft = '200px';">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
       </div>
-      <div class="col-sm-8" align="center">
-        <h2 style='color: white;'>Movie App</h2>
+
+      <!-- Heading of App -->
+      <div style="float: center;">
+        <h2 style="color: white; float: center;">Movie App</h2>
       </div>
 
       <!-- Authentification Area -->
-      <div class="col-sm-3" align="right" style="font-size: 20px;">
-
-        <div id="authentication_area" style="border:1px solid white;">
-          <div *ngIf="!isLoggedIn();" align="right">
-            <div class="row">
-              <div class="col-sm-5" style="padding: 5px 5px;">
-                <input placeholder="username" id="input_username" style="height: 30px; width: 100%; font-size: 15px;">
-                <input type="password" placeholder="password" id="input_password" style="height: 30px; width: 100%; font-size: 15px;" (keyup.enter)="login();">
-              </div>
-              <div class="col-sm-3" style="padding: 5px 5px; width: 100%;">
-                <button class="button" (click)="login();">Sign In</button>
-              </div>
-              <div class="col-sm-4" style="padding: 5px 5px;">
-                <button class="button">Sign Up</button>
-              </div>
-
+      <div id="authentication_area"
+           style="width: 300px; float: right;">
+        <!-- area for not authorized users -->
+        <div *ngIf="!isLoggedIn();" align="right">
+          <div class="row">
+            <div class="col-sm-4" style="padding: 5px 5px;">
+              <input placeholder="username" id="input_username" style="height: 30px; width: 100%; font-size: 15px;">
+              <input type="password" placeholder="password" id="input_password" style="height: 30px; width: 100%; font-size: 15px;" (keyup.enter)="login();">
             </div>
-          </div>
+            <div class="col-sm-4" style="padding: 5px 5px; width: 100%;">
+              <button class="button" (click)="login();">Sign In</button>
+            </div>
+            <div class="col-sm-4" style="padding: 5px 5px;">
+              <button class="button">Sign Up</button>
+            </div>
 
-          <div *ngIf="isLoggedIn();">
-            <div class="row">
-              <div class="col-sm-5">
-                <div>
-                  {{ getUsername() }}
-                </div>
+          </div>
+        </div>
+        <!-- area for authorized users -->
+        <div *ngIf="isLoggedIn();">
+          <div class="row">
+            <div class="col-sm-5">
+              <div>
+                {{ getUsername() }}
               </div>
-              <div class="col-sm-5">
-                <button class="button" (click)="logout();">Sign Out</button>
-              </div>
+            </div>
+            <div class="col-sm-5">
+              <button class="button" (click)="logout();">Sign Out</button>
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
 
