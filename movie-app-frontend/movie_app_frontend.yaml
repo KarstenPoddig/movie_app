@@ -22,7 +22,7 @@ spec:
       containers:
         - name: movie-app-frontend
         # image: gcr.io/kp-test-project-2/movie_app_frontend:test0.1
-          image: karstenp/movie_app_frontend:test0.2
+          image: karstenp/movie_app_frontend:prod_1.0
           imagePullPolicy: Always
 
 ---
