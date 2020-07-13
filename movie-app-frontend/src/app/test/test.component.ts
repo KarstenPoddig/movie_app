@@ -11,6 +11,8 @@ import { AuthService } from '../auth.service';
 })
 export class TestComponent implements OnInit {
 
+  rating = 3.5;
+
   constructor(private authService: AuthService,
               private http: HttpClient) { }
 
@@ -39,5 +41,9 @@ export class TestComponent implements OnInit {
       (data) => console.log(data),
       (err) => console.log(err)
     );
+  }
+
+  rate(rating): void{
+    console.log('Test')
   }
 }

@@ -110,5 +110,10 @@ export abstract class AbstractMoviesComponent {
      document.getElementById('movie_loader').hidden = true;
   }
 
+  private rate_movie(movieId, rating): void{
+    console.log(movieId);
+    console.log(rating);
+  }
+
 
 }

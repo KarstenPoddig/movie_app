@@ -30,6 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { QualityOfProfileComponent } from './quality-of-profile/quality-of-profile.component';
 
+// package for rating
+
+
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -72,6 +75,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
 
     ChartsModule,
+
+    NgbModule
 
   ],
   exports: [RouterModule],
