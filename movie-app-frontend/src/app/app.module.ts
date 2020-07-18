@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // package for graphics
 import { ChartsModule } from 'ng2-charts';
 import { QualityOfProfileComponent } from './quality-of-profile/quality-of-profile.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 // package for rating
 
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   { path: 'suggestions-cluster', component: SuggestionsClusterComponent },
   { path: 'suggestions-similar-movies', component: SuggestionsSimilarMoviesComponent },
   { path: 'suggestions-actors', component: SuggestionsActorsComponent },
+  { path: 'sign-up', component: SignUpComponent },
 ];
 
 
@@ -61,6 +63,7 @@ const appRoutes: Routes = [
     SuggestionsActorsComponent,
     TestComponent,
     QualityOfProfileComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

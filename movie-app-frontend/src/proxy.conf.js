@@ -38,6 +38,13 @@ const PROXY_CONFIG = [
     ],
     target: "http://127.0.0.1:8000/",
     secure: false
+  },
+  {
+    context: [
+      "/sign-up/"
+    ],
+    target: "http://127.0.0.1:8000/",
+    secure: false
   }
 ]
 

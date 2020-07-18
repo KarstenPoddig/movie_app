@@ -1,28 +1,9 @@
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
-from .forms import SignUpForm
-from movie_app.models import ClusteringStatus
 from django.http import JsonResponse
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            # Set clustering Status to done
-            cs = ClusteringStatus()
-            cs.user = user
-            cs.status = 'Not clustered'
-            cs.save()
-            return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+from rest_framework.views import APIView
+from rest_framework import permissions
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 
 
 class OutputObject:
@@ -50,3 +31,32 @@ class OutputObject:
     def get_http_response(self):
         self.build_output_dict()
         return JsonResponse(data=self.output_dict)
+
+
+class SignUp(APIView):
+
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+        username = request.GET.get('username')
+        password = request.GET.get('password')
+
+        # username or password are empty
+        if (username=='' or password==''):
+            outputObject = OutputObject(status='exception',
+                                        message='username or password is empty.')
+            return Response(outputObject.get_output_dict())
+
+        # try to create account
+        try:
+            new_user = User(username=username)
+            new_user.set_password(password)
+            new_user.save()
+        except IntegrityError:
+            outputObject = OutputObject(status='exception',
+                                        message='username already exists')
+            return Response(data=outputObject.get_output_dict())
+
+        # everything worked out
+        outputObject = OutputObject(status='normal')
+        return Response(data=outputObject.get_output_dict())

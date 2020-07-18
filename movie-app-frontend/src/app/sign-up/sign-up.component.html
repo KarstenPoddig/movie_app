@@ -1,0 +1,33 @@
+<div>
+  Username*:
+  <input id="sign_up_username" placeholder="Username">
+</div>
+
+<div>
+  First name:
+  <input id="sign_up_first_name" placeholder="First Name">
+</div>
+
+<div>
+  First name:
+  <input id="sign_up_last_name" placeholder="Last Name">
+</div>
+
+<div>
+  Password*:
+  <input id="sign_up_pw_1" type="password" placeholder="Password">
+</div>
+
+<div>
+  Password (again)*:
+  <input id="sign_up_pw_2"
+         type="password"
+         placeholder="Password"
+         (keyup.enter)="signUp();">
+</div>
+
+<button class="button" (click)="signUp();">
+  Sign Up
+</button>
+
+<p id="sign_up_result">{{ signUpMessage }}</p>

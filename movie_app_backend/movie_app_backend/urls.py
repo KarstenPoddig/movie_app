@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('movie_app/', include('movie_app.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', views.signup, name='signup'),
+    path('sign-up/', views.SignUp.as_view(), name='signup'),
 
     ################## For authentification from Frontend ####################
     # path('api-token-auth/', obtain_jwt_token),
