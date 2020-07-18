@@ -59,14 +59,14 @@
           </div>
         </div>
         <!-- area for authorized users -->
-        <div *ngIf="isLoggedIn();" style="float: right; overflow: hidden;">
+        <div *ngIf="isLoggedIn();" style="float: right">
           <div class="row">
-            <div class="col-sm-6">
-              <div>
+            <div class="col-sm-4">
+              <h2 style="color:white;">
                 {{ getUsername() }}
-              </div>
+              </h2>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <button class="button" (click)="logout();">Sign Out</button>
             </div>
           </div>
