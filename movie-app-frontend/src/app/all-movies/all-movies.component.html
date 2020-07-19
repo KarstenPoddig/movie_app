@@ -42,10 +42,21 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div id="active_genre_filter"></div>
+      <div id="active_genre_filter">
+        <div *ngFor="let genre of this.filter.filter_genre_active">
+          <div class="filter_criterion">
+            {{ genre }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-2">
       <div id="active_year_filter"></div>
+        <div *ngFor="let year of this.filter.filter_year_active">
+          <div class="filter_criterion">
+            {{ year }}
+          </div>
+        </div>
     </div>
     <!--        Reset Filter Criteria: align right    -->
     <div class="col-sm-4" align="right">
