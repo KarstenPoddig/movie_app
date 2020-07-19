@@ -6,6 +6,7 @@ const PROXY_CONFIG = [
       "/all_movies/autocomplete/",
       "/rated_movies/autocomplete/",
       "/quality_of_profile/",
+      "/rate_movie",
     ],
     target: "http://127.0.0.1:8000/movie_app/",
     secure: false
