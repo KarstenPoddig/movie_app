@@ -1,4 +1,3 @@
-import json
 import numpy as np
 import pandas as pd
 from django.http import HttpResponse
@@ -6,51 +5,6 @@ from movie_app.models import Movie, Rating
 from movie_app.clustering.suggestions_cluster import update_movie_clusters
 from movie_app_backend.views import OutputObject
 from movie_app.sql_query.sql_query import QueryMovieDetails
-
-
-def rate_movie(request):
-    """This function is used to set ratings of movies"""
-    # Preprocessing: reading parameters from the request
-    movieId = int(request.GET.get('movieId'))
-    rating = float(request.GET.get('rating'))
-
-    if rating not in [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]:
-        return HttpResponse('rating invalid.')
-
-    ratings = Rating.objects.filter(user=request.user,
-                                    movie__movieId=movieId)
-
-    # rating of 0 is interpreted as no rating
-    if rating == 0:
-        # one entry exists -> delete this entry
-        if len(ratings) == 1:
-            ratings[0].delete()
-            update_movie_clusters(user=request.user,
-                                  movieId=movieId,
-                                  rating_action='deleted')
-        if len(ratings) > 1:
-            print('Error - multiple entries found')
-    else:
-        # create rating entry
-        if len(ratings) == 0:
-            rating_entry = Rating(user=request.user,
-                                  movie=Movie.objects.get(movieId=movieId),
-                                  rating=rating)
-            rating_entry.save()
-            update_movie_clusters(user=request.user,
-                                  movieId=movieId,
-                                  rating_action='created')
-        # exactly one entry found
-        if len(ratings) == 1:
-            rating_entry = ratings[0]
-            rating_entry.rating = rating
-            rating_entry.save()
-            print('changed')
-        # more than one entry found
-        if len(ratings) > 1:
-            print('Error - multiple entries found')
-
-    return HttpResponse('Done')
 
 
 def get_movies(movie_ids):
@@ -105,13 +59,56 @@ def movies_detail_data(request):
     return output.get_output_dict()
 
 
-# TODO: Implement 'Rate Movie' functionality
 class RateMovie(APIView):
 
     permission_classes = (permissions.IsAuthenticated, )
 
     def get(self, request):
-        return Response(data=[])
+        """This function is used to set ratings of movies"""
+        # Preprocessing: reading parameters from the request
+        movieId = int(request.GET.get('movieId'))
+        rating = float(request.GET.get('rating'))
+
+        if rating not in [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]:
+            return HttpResponse('rating invalid.')
+
+        ratings = Rating.objects.filter(user=request.user,
+                                        movie__movieId=movieId)
+
+        # rating of 0 is interpreted as no rating
+        if rating == 0:
+            # one entry exists -> delete this entry
+            if len(ratings) == 1:
+                ratings[0].delete()
+                update_movie_clusters(user=request.user,
+                                      movieId=movieId,
+                                      rating_action='deleted')
+            if len(ratings) > 1:
+                print('Error - multiple entries found')
+        else:
+            # create rating entry
+            if len(ratings) == 0:
+                rating_entry = Rating(user=request.user,
+                                      movie=Movie.objects.get(movieId=movieId),
+                                      rating=rating)
+                rating_entry.save()
+                update_movie_clusters(user=request.user,
+                                      movieId=movieId,
+                                      rating_action='created')
+            # exactly one entry found
+            if len(ratings) == 1:
+                rating_entry = ratings[0]
+                rating_entry.rating = rating
+                rating_entry.save()
+                print('changed')
+            # more than one entry found
+            if len(ratings) > 1:
+                outputObject = OutputObject(status='exception',
+                                            message='Something went wrong.')
+                return Response(data=outputObject.get_output_dict())
+                print('Error - multiple entries found')
+        outputObject = OutputObject(status='normal')
+        return Response(data=outputObject.get_output_dict())
 
 
 class QualityOfProfile(APIView):

@@ -111,9 +111,24 @@ export abstract class AbstractMoviesComponent {
   }
 
   private rate_movie(movieId, rating): void{
-    console.log(movieId);
-    console.log(rating);
-  }
 
+    if(!this.authService.isLoggedIn()){
+      console.log('Please log in to rate a movie.')
+      return;
+    }
+
+    let headers = {'Authorization': 'Bearer ' + this.authService.token }
+
+    this.http.get('/rate_movie/',
+                  { headers: headers,
+                    params: {
+                      'rating': rating,
+                      'movieId': movieId
+                    }
+                  })
+      .subscribe(json_result => {
+        console.log(json_result);
+      });
+  }
 
 }
