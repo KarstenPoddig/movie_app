@@ -167,6 +167,8 @@ class SimilarMovies(APIView):
             movies = df_similarity.merge(get_movies(df_similarity.movieId),
                                          how='inner', on='movieId')
             movies = movies.fillna('')
+            # round to 2 decimal points
+            movies.similarity_score = round(movies.similarity_score,2)
             movies = movies.to_dict('records')
             output = OutputObject(status='normal',
                                   data=movies)
