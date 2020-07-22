@@ -18,7 +18,7 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
 
   titles: string[];
   url_autocomplete: string = '/all_movies/autocomplete/';
-  baseMovie: any;
+  public baseMovie: any;
   baseMovieIsAssigned: boolean;
   // results (similar movies to baseMovie)
   movieList: MovieList;
@@ -105,5 +105,14 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
 
   };
 
+  toggleInfo(movieId): void {
+    let htmlElemId = 'movie_view_short_info_' + movieId;
+    let htmlElem = document.getElementById(htmlElemId);
+    htmlElem.hidden = !htmlElem.hidden;
+  }
+
+  rate_movie(movieId, rating): void {
+    console.log(movieId + '_' + rating)
+  }
 
 }

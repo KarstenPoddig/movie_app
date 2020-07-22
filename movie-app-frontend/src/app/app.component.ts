@@ -57,4 +57,17 @@ export class AppComponent {
     return localStorage.getItem('username');
   }
 
+
+  // ################ Sidenav #############################################
+
+  openSidenav(): void {
+    document.getElementById('mySidenav').style.width = '200px';
+    document.getElementById('content').style.marginLeft = '200px';
+  }
+
+  closeSidenav(): void {
+    document.getElementById('mySidenav').style.width = '0px';
+    document.getElementById('content').style.marginLeft = '0px';
+  }
+
 }

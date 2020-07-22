@@ -1,5 +1,6 @@
 <div class="sidenav" id="mySidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="document.getElementById('mySidenav').style.width = '0px'; document.getElementById('content').style.marginLeft = '0px';">×</a>
+  <a class="closebtn"
+     (click)="closeSidenav()">×</a>
   <a routerLink="/about">About</a>
   <a routerLink="/test">Test</a>
   <a routerLink="/all-movies" routerLinkActive="active">All Movies</a>
@@ -25,7 +26,7 @@
       <!-- Button for showing sidebar -->
       <div class="sidenav_button_container"
            style="float: left;"
-           onclick="document.getElementById('mySidenav').style.width = '200px'; document.getElementById('content').style.marginLeft = '200px';">
+           (click)="openSidenav()">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>

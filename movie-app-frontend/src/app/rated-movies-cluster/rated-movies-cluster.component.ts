@@ -69,6 +69,15 @@ export class RatedMoviesClusterComponent implements OnInit {
         }
       }
     );
+  }
+
+  toggleInfo(movieId): void{
+
+    let htmlElemId = "movie_view_short_info_" + movieId;
+
+    let htmlElem = document.getElementById(htmlElemId)
+
+    htmlElem.hidden = !htmlElem.hidden;
 
   }
 
