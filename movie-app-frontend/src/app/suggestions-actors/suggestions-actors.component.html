@@ -17,8 +17,13 @@
     <div class="scrollmenu">
       <div *ngFor="let movie of cluster.getMovies()" style="display: inline-block;">
         <div class='suggested_movie_complete'>
-          <img src="{{ movie.urlMoviePoster }}" class='img_suggestion'>
-          <div class='movie_view_short_info' hidden="true">
+          <img src="{{ movie.urlMoviePoster }}"
+               class="img_suggestion"
+               (mouseenter)="toggleInfo(movie.movieId);"
+               (mouseleave)="toggleInfo(movie.movieId);">
+          <div class="movie_view_short_info"
+               id="movie_view_short_info_{{ movie.movieId }}"
+               hidden="true">
             <div class ='row' style='background-color: #dee9fa;'>
               <div class='movie_title_wrapper' style='padding: 5px 5px; font-weight: bold; font-size: 20px;'>
                 {{ movie.title }}
