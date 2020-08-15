@@ -1,12 +1,13 @@
 import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
+import { MovieDetailed } from 'src/app/classes/movie.detailed';
 
 // packages for autocomplete
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { of, fromEvent } from 'rxjs';
 import { debounceTime, map, distinctUntilChanged, filter } from 'rxjs/operators';
-import { MovieList } from 'src/app/classes/movielist';
+import { MovieListShort } from 'src/app/classes/movie.list.short';
 
 
 @Component({
@@ -18,19 +19,18 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
 
   titles: string[];
   url_autocomplete: string = '/all_movies/autocomplete/';
-  public baseMovie: any;
+  public baseMovie: MovieDetailed;
   baseMovieIsAssigned: boolean;
   // results (similar movies to baseMovie)
-  movieList: MovieList;
+  movieList: MovieListShort;
 
   @ViewChild('movieSearchInput', { static: true }) movieSearchInput: ElementRef;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
     this.titles = [];
-    this.baseMovie = {};
     this.baseMovieIsAssigned = false;
-    this.movieList = new MovieList();
+    this.movieList = new MovieListShort([]);
   }
 
 
@@ -69,7 +69,7 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
         console.log(json_result)
 
         if(json_result['meta']['status'] == 'normal'){
-          this.baseMovie = json_result['data'][0]
+          this.baseMovie = new MovieDetailed(json_result['data'][0]);
           this.baseMovieIsAssigned = true;
 
           // search similar movies
@@ -89,7 +89,7 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
                   { params: { 'movieId': movieId } })
       .subscribe(json_result => {
         console.log(json_result['data'])
-        this.movieList.assignResults(json_result['data']);
+        this.movieList = new MovieListShort(json_result['data']);
       }
     );
 
@@ -104,15 +104,5 @@ export class SuggestionsSimilarMoviesComponent implements OnInit {
       });
 
   };
-
-  toggleInfo(movieId): void {
-    let htmlElemId = 'movie_view_short_info_' + movieId;
-    let htmlElem = document.getElementById(htmlElemId);
-    htmlElem.hidden = !htmlElem.hidden;
-  }
-
-  rate_movie(movieId, rating): void {
-    console.log(movieId + '_' + rating)
-  }
 
 }

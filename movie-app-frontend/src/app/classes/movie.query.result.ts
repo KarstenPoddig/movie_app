@@ -1,14 +1,14 @@
-import { MovieList } from 'src/app/classes/movielist';
+import { MovieListDetailed } from 'src/app/classes/movie.list.detailed';
 
 
 export class MovieQueryResult{
 
-  movieList: MovieList;
+  movieList: MovieListDetailed;
   exception: string;
   status: string
 
   constructor(){
-    this.movieList = new MovieList();
+    this.movieList = new MovieListDetailed([]);
     this.exception = '';
     this.status = '';
   }
@@ -27,7 +27,7 @@ export class MovieQueryResult{
     this.status = '';
   }
 
-  assignResults(json_result){
+  assignResults(json_result): void {
 
     this.status = json_result['meta']['status'];
     this.exception = json_result['meta']['message'];
@@ -35,7 +35,6 @@ export class MovieQueryResult{
     if(this.status == 'normal'){
       this.movieList.assignResults(json_result['data']);
     }
-
   }
 
   getQueryResult() {

@@ -1,17 +1,14 @@
-import { MovieList } from 'src/app/classes/movielist';
+import { MovieListShort } from 'src/app/classes/movie.list.short';
 
 
 export class ClusterActor {
 
-  movieList: MovieList;
+  movieList: MovieListShort;
   actor: string;
 
   constructor(data) {
 
-    this.movieList = new MovieList();
-    this.movieList.assignResults(data['movies']);
-
-    this.actor = data['actor']
+    this.movieList = new MovieListShort(data['movies']);
 
   }
 

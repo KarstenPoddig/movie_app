@@ -5,7 +5,7 @@ import { ClusterList } from 'src/app/classes/clusterlist';
 import { Filter } from 'src/app/classes/filter';
 import { MovieQueryResult } from 'src/app/classes/movie.query.result';
 import { MovieQuery } from 'src/app/classes/movie.query';
-import { MovieList } from 'src/app/classes/movielist';
+import { MovieListDetailed } from 'src/app/classes/movie.list.detailed';
 import { NavigationArea } from 'src/app/classes/navigation.area';
 
 import { HttpClient } from '@angular/common/http';
@@ -38,9 +38,9 @@ export abstract class AbstractMoviesComponent {
   constructor(public authService: AuthService,
               private http: HttpClient) {
     this.filter = new Filter;
-    this.movieQueryResult = new MovieQueryResult;
     this.navigationArea = new NavigationArea;
     this.titles = [];
+    this.movieQueryResult = new MovieQueryResult;
    }
 
   ngOnInit(): void {
@@ -81,8 +81,8 @@ export abstract class AbstractMoviesComponent {
      // show movie loader
      document.getElementById('movie_loader').hidden = false;
 
-     this.movieQueryResult.clear();
      this.navigationArea.resetNavigationArea();
+     this.movieQueryResult.clear();
 
      let headers = {}
 
@@ -108,27 +108,6 @@ export abstract class AbstractMoviesComponent {
          });
 
      document.getElementById('movie_loader').hidden = true;
-  }
-
-  private rate_movie(movieId, rating): void{
-
-    if(!this.authService.isLoggedIn()){
-      console.log('Please log in to rate a movie.')
-      return;
-    }
-
-    let headers = {'Authorization': 'Bearer ' + this.authService.token }
-
-    this.http.get('/rate_movie/',
-                  { headers: headers,
-                    params: {
-                      'rating': rating,
-                      'movieId': movieId
-                    }
-                  })
-      .subscribe(json_result => {
-        console.log(json_result);
-      });
   }
 
 }

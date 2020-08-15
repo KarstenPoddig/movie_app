@@ -100,47 +100,47 @@
               <fieldset class="rate">
                 <input type="radio" id="rating10_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="10"
-                       (click)="this.rate_movie(movie.movieId,5.0);movie.rating=5.0;"
+                       (click)="movie.rateMovie(5.0, this.http, this.authService);movie.rating=5.0;"
                        [attr.checked]="movie.rating==5.0 ? '' : null"/><label for="rating10_{{movie.movieId}}" title="5 stars"></label>
                 <input type="radio" id="rating9_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="9"
-                       (click)="this.rate_movie(movie.movieId,4.5);movie.rating=4.5;"
+                       (click)="movie.rateMovie(4.5,this.http, this.authService);movie.rating=4.5;"
                        [attr.checked]="movie.rating==4.5 ? '' : null"/><label class="half" for="rating9_{{movie.movieId}}" title="4 1/2 stars"></label>
                 <input type="radio" id="rating8_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="8"
-                       (click)="this.rate_movie(movie.movieId,4.0);movie.rating=4.0;"
+                       (click)="movie.rateMovie(4.0,this.http, this.authService);movie.rating=4.0;"
                        [attr.checked]="movie.rating==4.0 ? '' : null"/><label for="rating8_{{movie.movieId}}" title="4 stars"></label>
                 <input type="radio" id="rating7_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="7"
-                       (click)="this.rate_movie(movie.movieId,3.5);movie.rating=3.5;"
+                       (click)="movie.rateMovie(3.5,this.http, this.authService);movie.rating=3.5;"
                        [attr.checked]="movie.rating==3.5 ? '' : null"/><label class="half" for="rating7_{{movie.movieId}}" title="3 1/2 stars"></label>
                 <input type="radio" id="rating6_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="6"
-                       (click)="this.rate_movie(movie.movieId,3.0);movie.rating=3.0;"
+                       (click)="movie.rateMovie(3.0,this.http, this.authService);movie.rating=3.0;"
                        [attr.checked]="movie.rating==3.0 ? '' : null"/><label for="rating6_{{movie.movieId}}" title="3 stars"></label>
                 <input type="radio" id="rating5_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="5"
-                       (click)="this.rate_movie(movie.movieId,2.5);movie.rating=2.5;"
+                       (click)="movie.rateMovie(2.5,this.http, this.authService);movie.rating=2.5;"
                        [attr.checked]="movie.rating==2.5 ? '' : null"/><label class="half" for="rating5_{{movie.movieId}}" title="2 1/2 stars"></label>
                 <input type="radio" id="rating4_{{movie.movieId}}"
                        name="rating" value="4"
-                       (click)="this.rate_movie(movie.movieId,2.0);movie.rating=2.0;"
+                       (click)="movie.rateMovie(2.0,this.http, this.authService);movie.rating=2.0;"
                        [attr.checked]="movie.rating==2.0 ? '' : null"/><label for="rating4_{{movie.movieId}}" title="2 stars"></label>
                 <input type="radio" id="rating3_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="3"
-                       (click)="this.rate_movie(movie.movieId,1.5);movie.rating=1.5;"
+                       (click)="movie.rateMovie(1.5,this.http, this.authService);movie.rating=1.5;"
                        [attr.checked]="movie.rating==1.5 ? '' : null"/><label class="half" for="rating3_{{movie.movieId}}" title="1 1/2 stars"></label>
                 <input type="radio" id="rating2_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="2"
-                       (click)="this.rate_movie(movie.movieId,1.0);movie.rating=1.0;"
+                       (click)="movie.rateMovie(1.0,this.http, this.authService);movie.rating=1.0;"
                        [attr.checked]="movie.rating==1.0 ? '' : null"/><label for="rating2_{{movie.movieId}}" title="1 star"></label>
                 <input type="radio" id="rating1_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="1"
-                       (click)="this.rate_movie(movie.movieId,0.5);movie.rating=0.5;"
+                       (click)="movie.rateMovie(0.5,this.http, this.authService);movie.rating=0.5;"
                        [attr.checked]="movie.rating==0.5 ? '' : null"/><label class="half" for="rating1_{{movie.movieId}}" title="1/2 star"></label>
                 <input type="radio" id="rating0_{{movie.movieId}}"
                        name="rating_{{movie.movieId}}" value="0"
-                       (click)="this.rate_movie(movie.movieId,0);movie.rating=0.0;"
+                       (click)="movie.rateMovie(0,this.http, this.authService);movie.rating=0.0;"
                        [attr.checked]="movie.rating==0.0 ? '' : null"/><label for="rating0_{{movie.movieId}}" title="No star"></label>
               </fieldset>
             </div>

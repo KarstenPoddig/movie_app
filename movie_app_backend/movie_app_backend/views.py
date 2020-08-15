@@ -4,6 +4,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
+from movie_app.models import ClusteringStatus
 
 
 class OutputObject:
@@ -52,6 +53,10 @@ class SignUp(APIView):
             new_user = User(username=username)
             new_user.set_password(password)
             new_user.save()
+            # initialize clustering status as 'Done'
+            clustering_status = ClusteringStatus(user=new_user,
+                                                 status='Done')
+            clustering_status.save();
         except IntegrityError:
             outputObject = OutputObject(status='exception',
                                         message='username already exists')

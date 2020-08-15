@@ -1,17 +1,15 @@
-import { MovieList } from 'src/app/classes/movielist';
+import { MovieListShort } from 'src/app/classes/movie.list.short';
 
 
 export class Cluster {
 
-  movieList: MovieList;
+  movieList: MovieListShort;
   tags: string[];
   cluster_id: number;
 
   constructor(data) {
 
-    this.movieList = new MovieList();
-    this.movieList.assignResults(data['movies']);
-
+    this.movieList = new MovieListShort(data['movies']);
     this.tags = new String(data['tags']).split(',');
 
   }
