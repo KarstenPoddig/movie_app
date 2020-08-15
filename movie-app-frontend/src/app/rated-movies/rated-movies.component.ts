@@ -5,7 +5,6 @@ import { ClusterList } from 'src/app/classes/clusterlist';
 import { Filter } from 'src/app/classes/filter';
 import { MovieQueryResult } from 'src/app/classes/movie.query.result';
 import { MovieQuery } from 'src/app/classes/movie.query';
-import { MovieList } from 'src/app/classes/movielist';
 import { NavigationArea } from 'src/app/classes/navigation.area';
 
 import { AbstractMoviesComponent } from 'src/app/classes/abstract.movies.component';
