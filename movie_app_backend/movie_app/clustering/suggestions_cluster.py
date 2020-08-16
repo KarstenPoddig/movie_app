@@ -36,7 +36,7 @@ def update_movie_clusters(user, movieId, rating_action):
         clustering_status.save()
         print('Set clustering status to pending.')
 
-        compute_new_clusters_movies(user)
+        refresh_clusters(user)
 
         clustering_status.status = 'Done'
         clustering_status.save()
@@ -46,26 +46,45 @@ def update_movie_clusters(user, movieId, rating_action):
             assign_movie_to_cluster(user, movieId)
 
 
-def compute_new_clusters_movies(user):
-    clustered_movies = get_clustered_movies_hierarchical(user)
+def refresh_clusters(user):
+    cluster_list = get_new_clusters(user)
     # delete old Clusters of user
-    Cluster.objects.filter(user=user).delete()
-    # saving the results
-    clusters = clustered_movies.cluster.unique()
-    print(clusters)
-    # save clusters in Rating
-    print(clustered_movies.head())
+    storing_new_clusters(user, cluster_list)
+
+
+# returns a list of dictionaries. Each dictionary represents a cluster and contains
+# the keys 'tags' (description of cluster with multiple tags) and
+# 'movies' (a list of movieId's)
+def get_new_clusters(user):
+
+    cluster_list = []
+
+    rated_movies_with_cluster_labels = hierarchical_clustering(user)
+
+    clusters = rated_movies_with_cluster_labels.cluster.unique()
+
     for cluster in clusters:
-        clustered_movies_cluster = clustered_movies[clustered_movies.cluster == cluster]
-        cluster_description = compute_cluster_description(clustered_movies_cluster.index)
+        movies_in_cluster = rated_movies_with_cluster_labels[
+                                rated_movies_with_cluster_labels.cluster == cluster
+                            ]
+        cluster_list.append({'tags': compute_cluster_description(movies_in_cluster.index),
+                             'movies': movies_in_cluster.index})
+    return cluster_list
+
+
+def storing_new_clusters(user, cluster_list):
+    # deleting old clusters (if existing)
+    Cluster.objects.filter(user=user).delete()
+
+    for cluster in cluster_list:
         cluster_entry = Cluster(user=user,
-                                description=cluster_description)
+                                description=cluster['tags'])
         cluster_entry.save()
-        for movieId in clustered_movies_cluster.index:
-            rating = Rating.objects.filter(user=user,
-                                           movie__movieId=movieId)[0]
-            rating.cluster = cluster_entry
-            rating.save()
+        for movieId in cluster['movies']:
+            rated_movie_entry = Rating.objects.filter(user=user,
+                                                      movie__movieId=movieId)[0]
+            rated_movie_entry.cluster = cluster_entry
+            rated_movie_entry.save()
 
 
 def compute_cluster_description(movieIds):
@@ -101,7 +120,7 @@ def get_clustered_movies(user):
     return clustered_movies
 
 
-def get_clustered_movies_hierarchical(user):
+def hierarchical_clustering(user):
     distance_matrix = load_distance_matrix()
     rated_movies = get_rated_movies_user(user)
     rated_movies = join_movies_to_row_index(movies=rated_movies)

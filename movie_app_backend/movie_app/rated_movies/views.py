@@ -8,7 +8,7 @@ from movie_app_backend.views import OutputObject
 from movie_app.sql_query.sql_query import RatedMoviesHistGenre,\
     RatedMoviesAvgGenre
 from movie_app.rated_movies.rated_movies_cluster import get_rated_movies_clustered
-from movie_app.clustering.suggestions_cluster import compute_new_clusters_movies
+from movie_app.clustering.suggestions_cluster import refresh_clusters
 from movie_app.sql_query.sql_query import QueryMovieDetails
 
 
@@ -84,13 +84,6 @@ def ratings_per_year_data(request):
         movies.columns = ['year', 'nr_ratings']
     output = OutputObject(status='normal',
                           data=movies.to_dict('list'))
-    return output.get_http_response()
-
-
-def refresh_cluster(request):
-    compute_new_clusters_movies(user=request.user)
-    output = OutputObject(status='normal',
-                          data=None)
     return output.get_http_response()
 
 
@@ -233,7 +226,8 @@ class RefreshCluster(APIView):
     permission_classes = (permissions.IsAuthenticated, )
 
     def get(self, request):
-        compute_new_clusters_movies(user=request.user)
+        refresh_clusters(user=request.user)
+        # compute_new_clusters_movies(user=request.user)
         output = OutputObject(status='normal',
                               data=None)
         return Response(data=output.get_output_dict())
