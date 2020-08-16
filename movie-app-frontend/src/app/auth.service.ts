@@ -46,21 +46,12 @@ export class AuthService {
       shareReplay(),
     );
 
-    //window.location.reload();
-
-  }
-
-  signup(username: string, email: string, password1: string, password2: string) {
-    // TODO: implement signup
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('username');
-
-    // window.location.reload();
-
   }
 
   refreshToken() {
