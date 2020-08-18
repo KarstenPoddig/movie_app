@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}App functionalities}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Sign up / Sign In}{3}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Sign Up}{3}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Sign In}{4}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Search Movies}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Rate Movies}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}View Rated Movies}{5}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Movies with Details}{6}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Clustered Movies}{6}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Statistics}{6}{subsubsection.2.4.3}
+\contentsline {subsection}{\numberline {2.5}View Suggestions}{6}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Suggestions based on clusters}{7}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Search Similar Movies}{8}{subsubsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.3}Suggestions based on Actors}{8}{subsubsection.2.5.3}
+\contentsline {section}{\numberline {3}Algorithms (Data Science Part)}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Notation}{10}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Similarity and Distance}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Prediction of Rating}{11}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Clustering of Rated movies for a user}{11}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Final Predictions}{13}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Evaluation of Prediction Algorithm}{14}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Discussion}{14}{subsection.3.7}
+\contentsline {section}{\numberline {4}Source of Data (Data Engineering Part)}{14}{section.4}
+\contentsline {subsection}{\numberline {4.1}Source of Data}{14}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Google Cloud SQL}{14}{subsection.4.2}
+\contentsline {section}{\numberline {5}Structure of the deployment}{14}{section.5}

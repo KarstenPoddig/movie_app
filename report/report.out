@@ -1,0 +1,27 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{App functionalities}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Sign up / Sign In}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Sign Up}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Sign In}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Search Movies}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Rate Movies}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{View Rated Movies}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Movies with Details}{subsection.2.4}% 9
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Clustered Movies}{subsection.2.4}% 10
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Statistics}{subsection.2.4}% 11
+\BOOKMARK [2][-]{subsection.2.5}{View Suggestions}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Suggestions based on clusters}{subsection.2.5}% 13
+\BOOKMARK [3][-]{subsubsection.2.5.2}{Search Similar Movies}{subsection.2.5}% 14
+\BOOKMARK [3][-]{subsubsection.2.5.3}{Suggestions based on Actors}{subsection.2.5}% 15
+\BOOKMARK [1][-]{section.3}{Algorithms \(Data Science Part\)}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Notation}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Similarity and Distance}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.3}{Prediction of Rating}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.4}{Clustering of Rated movies for a user}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.5}{Final Predictions}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.6}{Evaluation of Prediction Algorithm}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.7}{Discussion}{section.3}% 23
+\BOOKMARK [1][-]{section.4}{Source of Data \(Data Engineering Part\)}{}% 24
+\BOOKMARK [2][-]{subsection.4.1}{Source of Data}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.2}{Google Cloud SQL}{section.4}% 26
+\BOOKMARK [1][-]{section.5}{Structure of the deployment}{}% 27
