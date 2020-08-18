@@ -14,6 +14,14 @@ movie-app-frontend/dist
 movie-app-frontend/e2e
 movie-app-frontend/node_modules
 
+
+# auxiliary files for report
+report/report.aux
+report/report.log
+report/report.toc
+report/report.out
+report/report.synctex.gz
+
 # Project Files
 .idea
 
