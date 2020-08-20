@@ -1,4 +1,4 @@
-<h2>Suggestions based on your Movie Clusters</h2>
+<h2>Movies with actors from movies you liked</h2>
 
 <div *ngIf="!authService.isLoggedIn()">
   Please sign in to view the suggestions based on your movie clusters.
@@ -9,7 +9,7 @@
   <div *ngFor="let cluster of suggestionList" class="row">
 
     <div class="cluster_tag_wrapper" align="center">
-      <div>
+      <div class="cluster_tag_elem">
         {{ cluster.actor }}
       </div>
     </div>

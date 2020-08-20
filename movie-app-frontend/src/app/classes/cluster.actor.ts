@@ -9,6 +9,7 @@ export class ClusterActor {
   constructor(data) {
 
     this.movieList = new MovieListShort(data['movies']);
+    this.actor = data['actor'];
 
   }
 
