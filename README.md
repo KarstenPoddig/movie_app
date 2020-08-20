@@ -1,5 +1,7 @@
 # Movie App
 
+deployment status: <div style="background-color: green;">online</div>
+
 This repository contains the files for a web app which contains a movie recommendation engine.
 
 The app is deployed with the Google Kubernetes Engine. It consists of two services - the frontend and the backend. The .yaml files for the deyploment of each are contained in the folders 'movie-app-frontend' and 'movie_app_backend'.
@@ -10,4 +12,4 @@ The backend is written and Python and is based on the django rest framework. Fur
 
 ## Frontend
 
-The frontend is written with the Angular Framework and Typescript.
+The frontend is written in Typescript with Angular.
