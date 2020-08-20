@@ -9,14 +9,12 @@ import { AppComponent } from './app.component';
 import { AllMoviesComponent } from './all-movies/all-movies.component';
 import { RatedMoviesComponent } from './rated-movies/rated-movies.component';
 import { RatedMoviesClusterComponent } from './rated-movies-cluster/rated-movies-cluster.component';
-import { AboutComponent } from './about/about.component';
 import { RatedMoviesStatisticsComponent } from './rated-movies-statistics/rated-movies-statistics.component';
 import { SuggestionsClusterComponent } from './suggestions-cluster/suggestions-cluster.component';
 import { SuggestionsSimilarMoviesComponent } from './suggestions-similar-movies/suggestions-similar-movies.component';
 import { SuggestionsActorsComponent } from './suggestions-actors/suggestions-actors.component';
 // Tests for Login
 import { FormsModule } from '@angular/forms';    // add this
-import { TestComponent } from './test/test.component';    // add this
 import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
 
 // package for autocomplete
@@ -36,8 +34,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 const appRoutes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'test', component: TestComponent},
   { path: 'all-movies', component: AllMoviesComponent },
   { path: 'rated-movies', component: RatedMoviesComponent },
   { path: 'rated-movies-cluster', component: RatedMoviesClusterComponent },
@@ -56,12 +52,10 @@ const appRoutes: Routes = [
     AllMoviesComponent,
     RatedMoviesComponent,
     RatedMoviesClusterComponent,
-    AboutComponent,
     RatedMoviesStatisticsComponent,
     SuggestionsClusterComponent,
     SuggestionsSimilarMoviesComponent,
     SuggestionsActorsComponent,
-    TestComponent,
     QualityOfProfileComponent,
     SignUpComponent,
   ],
