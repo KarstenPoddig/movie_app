@@ -1,6 +1,6 @@
 # Movie App
 
-deployment status: online
+deployment status: **online**
 
 Link: [Movie App](http://35.234.113.42)
 
@@ -16,7 +16,7 @@ Some features of the app (like searching for movies or searching similar movies 
 
 ## Backend
 
-The backend is written and Python and is based on the django rest framework. Furthermore the backend is connected to a PostgreSQL database running in the Google Cloud.
+The backend is written and Python and is based on the django rest framework. Furthermore the backend is connected to a PostgreSQL database running in a Google Cloud Project.
 
 ## Frontend
 
@@ -27,6 +27,6 @@ The frontend is written in Typescript with Angular.
 The folder 'report' contains among others the following information:
  - detailed information of the features and the UI
  - description of the algorithms which determine the suggestions
- - source of data (ratings, movies)
+ - source of data (for ratings and movies)
 
 The report is not finalized yet, but still in progress.
