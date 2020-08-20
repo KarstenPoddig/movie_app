@@ -1,6 +1,6 @@
 # Movie App
 
-deployment status: <div style="background-color: green;">online</div>
+deployment status: <span style="background-color:green;">online</span>
 
 This repository contains the files for a web app which contains a movie recommendation engine.
 
