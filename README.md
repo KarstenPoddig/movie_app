@@ -1,6 +1,6 @@
 # Movie App
 
-deployment status: **online**
+deployment status: **offline**
 
 Link: [Movie App](http://35.246.223.238)
 
