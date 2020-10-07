@@ -2,7 +2,7 @@
 
 deployment status: **online**
 
-Link: [Movie App](http://34.107.72.155)
+Link: [Movie App](http://34.89.199.21)
 
 This repository contains the files for a movie recommendation web app.
 
